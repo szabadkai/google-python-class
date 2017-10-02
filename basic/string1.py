@@ -1,3 +1,4 @@
+
 #!/usr/bin/python -tt
 # Copyright 2010 Google Inc.
 # Licensed under the Apache License, Version 2.0
@@ -26,6 +27,11 @@
 def donuts(count):
     # +++your code here+++
     return
+    s = "Number of donuts: "
+    if count < 10:
+        return s + str(count)
+    else:
+        return s + "many"
 
 
 # B. both_ends
@@ -36,6 +42,12 @@ def donuts(count):
 def both_ends(s):
     # +++your code here+++
     return
+    if len(s) < 2:
+        return ""
+    else:
+        s1 = s[:2]
+        s2 = s[-2:]
+        return s1 + s2
 
 
 # C. fix_start
@@ -50,6 +62,9 @@ def both_ends(s):
 def fix_start(s):
     # +++your code here+++
     return
+    stra = s[0]
+    strb = s[1:]
+    return stra + strb.replace(stra, "*")
 
 
 # D. MixUp
@@ -62,6 +77,9 @@ def fix_start(s):
 def mix_up(a, b):
     # +++your code here+++
     return
+    swapa = b[:2] + a[2:]
+    swapb = a[:2] + b[2:]
+    return swapa + " " + swapb
 
 
 # Provided simple test() function used in main() to print
@@ -108,4 +126,5 @@ def main():
 
 # Standard boilerplate to call the main() function.
 if __name__ == '__main__':
+    main()
     main()

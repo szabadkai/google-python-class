@@ -18,6 +18,12 @@
 def verbing(s):
     # +++your code here+++
     return
+    if len(s) >= 3 and s[-3:] != "ing":
+        return s + "ing"
+    elif s[-3:] == "ing":
+        return s + "ly"
+    else:
+        return s
 
 
 # E. not_bad
@@ -31,6 +37,12 @@ def verbing(s):
 def not_bad(s):
     # +++your code here+++
     return
+    no = s.find("not")
+    bad = s.find("bad")
+    if no != -1 and bad != -1 and bad > no:
+        return s[:no] + "good" + s[bad + 3:]
+    else:
+        return s
 
 
 # F. front_back
@@ -44,6 +56,13 @@ def front_back(a, b):
     # +++your code here+++
     return
 
+    afele = len(a)//2
+    bfele = len(b)//2
+    if len(a) % 2 == 1:
+        afele += 1
+    if len(b) % 2 == 1:
+        bfele += 1
+    return a[:afele] + b[:bfele] + a[afele:] + b[bfele:]
 
 # Simple provided test() function used in main() to print
 # what each function returns vs. what it's supposed to return.
