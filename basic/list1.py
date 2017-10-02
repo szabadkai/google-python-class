@@ -21,8 +21,11 @@
 # and last chars of the string are the same.
 # Note: python does not have a ++ operator, but += works.
 def match_ends(words):
-    # +++your code here+++
-    return
+    counter=0
+    for word in words:
+        if (len(word)>1 and word[0]==word[-1]):
+            counter+=1 
+    return counter
 
 
 # B. front_x
@@ -30,11 +33,18 @@ def match_ends(words):
 # in sorted order, except group all the strings that begin with 'x' first.
 # e.g. ['mix', 'xyz', 'apple', 'xanadu', 'aardvark'] yields
 # ['xanadu', 'xyz', 'aardvark', 'apple', 'mix']
-# Hint: this can be done by making 2 lists and sorting each of them
+# Hint: this can be done by making 2 lists and sorting each of them{}
 # before combining them.
 def front_x(words):
-    # +++your code here+++
-    return
+    xStartingWords, otherWords = [], []
+    for word in words:
+        if (word[0]=="x"):
+            xStartingWords.append(word)
+        else:
+            otherWords.append(word)
+        xStartingWords.sort()
+        otherWords.sort()
+    return (xStartingWords+otherWords)
 
 
 # C. sort_last
@@ -44,8 +54,7 @@ def front_x(words):
 # [(2, 2), (1, 3), (3, 4, 5), (1, 7)]
 # Hint: use a custom key= function to extract the last element form each tuple.
 def sort_last(tuples):
-    # +++your code here+++
-    return
+    return sorted(tuples, key = lambda x: x[-1])
 
 
 # Simple provided test() function used in main() to print
