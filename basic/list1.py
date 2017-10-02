@@ -38,16 +38,16 @@ def match_ends(words):
 # before combining them.
 def front_x(words):
     # +++your code here+++
-    list1=[]
-    list2=[]
+    first_letter_x=[]
+    first_letter_not_x=[]
     for word in words:
         if word[0]=="x":
-            list1.append(word)
+            first_letter_x.append(word)
         else:
-            list2.append(word)
-    list1=sorted(list1)
-    list2=sorted(list2)
-    return list1 + list2
+            first_letter_not_x.append(word)
+    first_letter_x=sorted(first_letter_x)
+    first_letter_not_x=sorted(first_letter_not_x)
+    return first_letter_x + first_letter_not_x
 
 
 # C. sort_last
