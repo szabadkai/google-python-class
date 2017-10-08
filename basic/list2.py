@@ -12,12 +12,14 @@
 # all adjacent == elements have been reduced to a single element,
 # so [1, 2, 2, 3] returns [1, 2, 3]. You may create a new list or
 # modify the passed in list.
+
+
 def remove_adjacent(nums):
-    newlist=[]
+    newlist = []
     if nums:
         newlist.append(nums[0])
         for num in nums[1:]:
-            if (num!=newlist[-1]):
+            if (num != newlist[-1]):
                 newlist.append(num)
     return newlist
 
@@ -28,22 +30,23 @@ def remove_adjacent(nums):
 # pass of both lists.
 def linear_merge(list1, list2):
     #list0=list1 + list2
-    #list0.sort()
-    result=[]
-    Ls=[len(list1), len(list2)]
-    lists=[list1,list2]
-    checkListLengths=lambda x: x[0]>0 and x[1]>0
-    check0=checkListLengths(Ls)
-    check=sum(Ls)>0
+    # list0.sort()
+    result = []
+    Ls = [len(list1), len(list2)]
+    lists = [list1, list2]
+
+    def checkListLengths(x): return x[0] > 0 and x[1] > 0
+    check0 = checkListLengths(Ls)
+    check = sum(Ls) > 0
     while (check):
         if (check0):
-            whichlist = lists[0][-1]<lists[1][-1]
+            whichlist = lists[0][-1] < lists[1][-1]
         else:
-            whichlist = Ls[0]<Ls[1]
+            whichlist = Ls[0] < Ls[1]
         result.append(lists[whichlist].pop(-1))
-        Ls[whichlist]+=-1
-        check0=checkListLengths(Ls)
-        check=sum(Ls)>0
+        Ls[whichlist] += -1
+        check0 = checkListLengths(Ls)
+        check = sum(Ls) > 0
     result.reverse()
     return result
 
