@@ -39,8 +39,48 @@ print_words() and print_top().
 
 import sys
 
+#Filebol szotar
+def newdict(filename):
+	f=open(filename, "r")
+	text = f.read()
+  	f.close()
+	words=text.split()
+	dict={}
+	for word in words:
+		newword=word.lower()
+		if(newword in dict): dict[newword]+=1
+		else: dict[newword]=1
+	return dict	
 
-# +++your code here+++
+#abc-ben a szavak
+def print_words(filename):
+	dict=newdict(filename)
+	words=sorted(dict.keys())
+	for word in words:
+		print(word, dict[word])	
+    return
+
+#Sorrendezes
+def top(filename):
+	dict=newdict(filename)
+	db=[]
+	for key in dict:
+		db.append(dict[key])
+	sorrend=sorted(db,reverse=True)
+	return sorrend
+
+#20 leggyakoribb szó:
+def print_top(filename):
+	dict=newdict(filename)
+	sorrend=top(filename)
+	for i in range(20):
+		t=sorrend[i]
+		for word in dict:
+			if(dict[word]==t):
+				print(word, t)
+				dict[word]=0
+     return
+
 # Define print_words(filename) and print_top(filename) functions.
 # You could write a helper utility function that reads a file
 # and builds and returns a word/count dict for it.
