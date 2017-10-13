@@ -44,7 +44,7 @@ def main():
     for filename in args:
         names = extract_names(filename)
         if summary:
-            output = ", ".join(names)
+            output = "\n".join(names)
             writer = open(filename.replace(".html",".summary"), 'w')
             writer.write(output + '\n')
             writer.close()
