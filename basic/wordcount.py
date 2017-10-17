@@ -38,6 +38,24 @@ print_words() and print_top().
 """
 
 import sys
+from collections import Counter
+
+def word_counts(filename):
+    fh= open(filename, 'r')
+    word_count = Counter()
+    for line in fh:
+        word_count.update(
+            [word.strip("., \n") for word in line.lower().split()])
+    return word_count
+
+def print_words(filename):
+    word_count = word_counts(filename)
+    print(word_count)
+
+def print_top(filename):
+    word_count = word_counts(filename)
+    print(word_count.most_common(20))
+
 
 
 # +++your code here+++
