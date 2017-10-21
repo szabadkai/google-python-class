@@ -13,6 +13,8 @@ import shutil
 import commands
 
 """Copy Special exercise
+nem igazán világos mit kéne csinálni ebben a feladatban, 
+hiányzik a feladatleírás?
 """
 
 # +++your code here+++

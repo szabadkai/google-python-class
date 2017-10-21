@@ -25,6 +25,15 @@ def read_urls(filename):
   Screens out duplicate urls and returns the urls sorted into
   increasing order."""
   # +++your code here+++
+  file=open(filename,'r')
+  urls=[]
+  for line in file:
+    result=re.search(r'GET (.*\.jpg)',line)
+    if result is not None:
+      urls.append('http://code.google.com'+result.group(1))
+  urls=list(set(urls))
+  urls.sort()
+  return urls
   
 
 def download_images(img_urls, dest_dir):
@@ -36,13 +45,24 @@ def download_images(img_urls, dest_dir):
   Creates the directory if necessary.
   """
   # +++your code here+++
+  from urllib.request import urlretrieve
+  if not os.path.exists(dest_dir):
+    os.makedirs(dest_dir)
+  htmlfile = open(dest_dir+'\img.html','a')
+  htmlfile.write('<html><body>')
+  for index in range(len(img_urls)-1):
+    imagename= 'img'+str(index)+'.jpg'
+    urllib.request.urlretrieve(img_urls[index], dest_dir+'\\'+imagename)
+    htmlfile.write('<img src="'+imagename+'">')
+  htmlfile.write('</body></html>')
+  htmlfile.close()
   
 
 def main():
   args = sys.argv[1:]
 
   if not args:
-    print 'usage: [--todir dir] logfile '
+    print ('usage: [--todir dir] logfile ')
     sys.exit(1)
 
   todir = ''
@@ -55,7 +75,7 @@ def main():
   if todir:
     download_images(img_urls, todir)
   else:
-    print '\n'.join(img_urls)
+    print ('\n'.join(img_urls))
 
 if __name__ == '__main__':
   main()
