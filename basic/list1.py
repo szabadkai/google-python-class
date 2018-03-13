@@ -21,8 +21,11 @@
 # and last chars of the string are the same.
 # Note: python does not have a ++ operator, but += works.
 def match_ends(words):
-    # +++your code here+++
-    return
+  qty=0
+  for item in words:
+    if len(item) > 1 and item[0] == item[-1]:
+      qty += 1
+  return qty
 
 
 # B. front_x
