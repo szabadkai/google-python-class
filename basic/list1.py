@@ -36,8 +36,16 @@ def match_ends(words):
 # Hint: this can be done by making 2 lists and sorting each of them
 # before combining them.
 def front_x(words):
-    # +++your code here+++
-    return
+  l1 = []
+  l2 = []
+  for item in words:
+    if (item[0] == 'x'):
+      l1.append(item)
+    else:
+      l2.append(item)
+  mergedList  = sorted(l1) + sorted(l2)
+
+  return mergedList
 
 
 # C. sort_last
