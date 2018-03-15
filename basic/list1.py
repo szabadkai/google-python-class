@@ -43,10 +43,7 @@ def front_x(words):
       l1.append(item)
     else:
       l2.append(item)
-  mergedList  = sorted(l1) + sorted(l2)
-
-  return mergedList
-
+  return  sorted(l1) + sorted(l2)
 
 # C. sort_last
 # Given a list of non-empty tuples, return a list sorted in increasing
@@ -55,9 +52,7 @@ def front_x(words):
 # [(2, 2), (1, 3), (3, 4, 5), (1, 7)]
 # Hint: use a custom key= function to extract the last element form each tuple.
 def sort_last(tuples):
-    # +++your code here+++
-    return
-
+  return  sorted(tuples, key = lambda x: x[1])
 
 # Simple provided test() function used in main() to print
 # what each function returns vs. what it's supposed to return.
