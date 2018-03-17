@@ -46,6 +46,7 @@ def linear_merge(list1, list2):
   while j < len(list2):
     l.append(list2[j])
     j += 1
+  #vagy return sorted(list1 + list2) kicsit rovidebb...:)
   return l
 
 
