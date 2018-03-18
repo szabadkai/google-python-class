@@ -16,8 +16,12 @@
 # If the string length is less than 3, leave it unchanged.
 # Return the resulting string.
 def verbing(s):
-    # +++your code here+++
-    return
+    if len(s) < 3:
+        return s
+    elif s[-3:] == 'ing':
+        return s + 'ly'
+    else:
+        return s + 'ing'
 
 
 # E. not_bad
@@ -29,8 +33,12 @@ def verbing(s):
 # So 'This dinner is not that bad!' yields:
 # This dinner is good!
 def not_bad(s):
-    # +++your code here+++
-    return
+    index_not = s.find('not')
+    index_bad = s.find('bad')
+    if index_not > -1 and index_bad > -1 and index_not < index_bad:
+        return s[:index_not] + 'good' + s[index_bad+3:]
+    else:
+        return s
 
 
 # F. front_back
@@ -40,10 +48,18 @@ def not_bad(s):
 # e.g. 'abcde', the front half is 'abc', the back half 'de'.
 # Given 2 strings, a and b, return a string of the form
 #  a-front + b-front + a-back + b-back
-def front_back(a, b):
-    # +++your code here+++
-    return
 
+from math import ceil #Jobbnak tunik importalni a ceil fuggvenyt
+def front(a):
+    return a[:int(ceil(len(a) / 2.0))]
+#Ket dolog miatt kell az int(): A) a ceil() nem integert ad vissza.
+#B) A program itt python 2-ben fut es ezert 5/2=2, mig 5/2.0=2.5
+
+def back(a):
+    return a[int(len(a) // 2 + len(a) % 2):]
+
+def front_back(a, b):
+    return front(a) + front(b) + back(a) + back(b)
 
 # Simple provided test() function used in main() to print
 # what each function returns vs. what it's supposed to return.
