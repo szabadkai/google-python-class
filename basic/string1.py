@@ -24,8 +24,13 @@
 # So donuts(5) returns 'Number of donuts: 5'
 # and donuts(23) returns 'Number of donuts: many'
 def donuts(count):
-    # +++your code here+++
-    return
+    strr = 'Number of donuts: '
+    if count > 9:
+        strr += 'many'
+        return strr
+    else:
+        strr += str(count)
+        return strr
 
 
 # B. both_ends
@@ -34,8 +39,15 @@ def donuts(count):
 # so 'spring' yields 'spng'. However, if the string length
 # is less than 2, return instead the empty string.
 def both_ends(s):
-    # +++your code here+++
-    return
+    if len(s)<2:
+        return ''
+    else:
+        strr = ''
+        strr += s[0]
+        strr += s[1]
+        strr += s[len(s)-2]
+        strr += s[len(s)-1]
+        return strr
 
 
 # C. fix_start
@@ -48,8 +60,13 @@ def both_ends(s):
 # Hint: s.replace(stra, strb) returns a version of string s
 # where all instances of stra have been replaced by strb.
 def fix_start(s):
-    # +++your code here+++
-    return
+    char = s[0]
+    s = s[1:len(s)]
+    s=s.replace(char,'*')
+    s2=''
+    s2 += char
+    s2 += s
+    return s2
 
 
 # D. MixUp
@@ -60,8 +77,15 @@ def fix_start(s):
 #   'dog', 'dinner' -> 'dig donner'
 # Assume a and b are length 2 or more.
 def mix_up(a, b):
-    # +++your code here+++
-    return
+    string = ''
+    string += b[0]
+    string += b[1]
+    string += a[2:len(a)]
+    string += ' '
+    string += a[0]
+    string += a[1]
+    string += b[2:len(b)]
+    return string
 
 
 # Provided simple test() function used in main() to print
