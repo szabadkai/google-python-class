@@ -14,9 +14,17 @@
 # modify the passed in list.
 def remove_adjacent(nums):
   l = []
-  for item in nums:
-    if item not in l:
-      l.append(item)
+  if len(nums) > 0:
+    l.append(nums[0])
+    actualIndex = 1
+    lastIndex = 0
+    while actualIndex < len(nums):
+      if(nums[lastIndex] == nums[actualIndex]):
+        actualIndex += 1
+      else:
+        l.append(nums[actualIndex])
+        lastIndex = actualIndex
+        actualIndex += 1
   return l
 
 
