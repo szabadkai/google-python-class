@@ -62,6 +62,7 @@ def main():
     print('remove_adjacent')
     test(remove_adjacent([1, 2, 2, 3]), [1, 2, 3])
     test(remove_adjacent([2, 2, 3, 3, 3]), [2, 3])
+    test(remove_adjacent([2, 2, 3, 3, 3, 2]), [2, 3, 2])
     test(remove_adjacent([]), [])
 
     print('\nlinear_merge')
