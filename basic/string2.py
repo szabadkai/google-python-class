@@ -2,7 +2,7 @@
 # Copyright 2010 Google Inc.
 # Licensed under the Apache License, Version 2.0
 # http://www.apache.org/licenses/LICENSE-2.0
-
+import math
 # Google's Python Class
 # http://code.google.com/edu/languages/google-python-class/
 
@@ -16,8 +16,12 @@
 # If the string length is less than 3, leave it unchanged.
 # Return the resulting string.
 def verbing(s):
-    # +++your code here+++
-    return
+    if len(s)>3:
+        if s[-3:]=="ing":
+            s+="ly"
+        else:
+            s+="ing"
+    return s
 
 
 # E. not_bad
@@ -29,8 +33,15 @@ def verbing(s):
 # So 'This dinner is not that bad!' yields:
 # This dinner is good!
 def not_bad(s):
-    # +++your code here+++
-    return
+    if len(s)<6:
+        return s
+    new=s
+    for i in range(len(s)-2):
+        if s[i:i+3]=="not":
+            for j in range(i, len(s)-2):
+                if s[j:j+3] =="bad":
+                    new=s[:i]+"good"+s[j+3:]
+    return new
 
 
 # F. front_back
@@ -41,8 +52,13 @@ def not_bad(s):
 # Given 2 strings, a and b, return a string of the form
 #  a-front + b-front + a-back + b-back
 def front_back(a, b):
-    # +++your code here+++
-    return
+    a_1 = math.ceil(len(a)/2)
+    b_1 = math.ceil(len(b)/2)
+    a_fr=a[ : a_1 ]
+    b_fr=b[ : b_1 ]
+    a_b=a[ a_1 : ] 
+    b_b=b[ b_1 : ]
+    return a_fr+b_fr+a_b+b_b
 
 
 # Simple provided test() function used in main() to print
