@@ -74,7 +74,6 @@ def main():
     if len(sys.argv) != 2:
         print('usage: ./mimic.py file-to-read')
         sys.exit(1)
-    mimic_dict(sys.argv[1])
 
     dict = mimic_dict(sys.argv[1])
     print_mimic(dict, '')
