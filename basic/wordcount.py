@@ -38,9 +38,34 @@ print_words() and print_top().
 """
 
 import sys
+import re
 
+def readfile(filename):
+    with open(filename) as f:
+        read_data = f.read()
+    f.closed
+    read_data = read_data.lower() #osszes nagybetu kisbetuve alakitasa
+    read_data2 = re.sub('[^a-y0-9\s]+', '', read_data) #specialis karakterek eltavolitasa
+    wordlist = read_data2.split() #egy lista letrehozasa ami az osszes szot sorrendben tartalmazza
+    dict1 = {} #Dict letrehozasa a szo-szoszam tarolashoz
+    for i in wordlist:
+        if (i in dict1) == False:
+            dict1[i] = 1
+        else:
+            dict1[i] += 1
+    return dict1
 
-# +++your code here+++
+def print_words(filename):
+    dict1 = readfile(filename)
+    for i in sorted(dict1):
+        print(i, ' ', dict1[i])
+
+def print_top(filename):
+    dict1 = readfile(filename)
+    top20 = sorted(dict1, key=dict1.get, reverse = True)[:20]
+    for i in top20:
+        print(i, ' ', dict1[i])
+
 # Define print_words(filename) and print_top(filename) functions.
 # You could write a helper utility function that reads a file
 # and builds and returns a word/count dict for it.
