@@ -24,8 +24,12 @@
 # So donuts(5) returns 'Number of donuts: 5'
 # and donuts(23) returns 'Number of donuts: many'
 def donuts(count):
-    # +++your code here+++
-    return
+  s = ''
+  if count < 10:
+    s = 'Number of donuts: ' + str(count)
+  else:
+    s = 'Number of donuts: many'
+  return s
 
 
 # B. both_ends
@@ -34,8 +38,9 @@ def donuts(count):
 # so 'spring' yields 'spng'. However, if the string length
 # is less than 2, return instead the empty string.
 def both_ends(s):
-    # +++your code here+++
-    return
+  s2 = ''
+  if len(s)>1: s2 = s[0] + s[1] + s[len(s)-2] + s[-1]
+  return s2
 
 
 # C. fix_start
@@ -48,8 +53,7 @@ def both_ends(s):
 # Hint: s.replace(stra, strb) returns a version of string s
 # where all instances of stra have been replaced by strb.
 def fix_start(s):
-    # +++your code here+++
-    return
+    return s[0] + s[1:].replace(s[0],'*')
 
 
 # D. MixUp
@@ -60,8 +64,22 @@ def fix_start(s):
 #   'dog', 'dinner' -> 'dig donner'
 # Assume a and b are length 2 or more.
 def mix_up(a, b):
-    # +++your code here+++
-    return
+    i = 0
+    newA = ''
+    newB = ''
+    while i < 2:
+        newA += b[i]
+        newB += a[i]
+        i += 1
+    while i < len(a):
+        newA += a[i]
+        i += 1
+    i = 2
+    while i < len(b):
+        newB += b[i]
+        i += 1
+    #return b[:2] + a[2:] + ' ' + a[:2] + b[2:] #vagy nem favago modszerrel.
+    return newA + ' ' + newB
 
 
 # Provided simple test() function used in main() to print
