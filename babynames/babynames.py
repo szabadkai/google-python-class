@@ -8,6 +8,7 @@
 
 import sys
 import re
+import operator
 
 """Baby Names exercise
 
@@ -34,35 +35,87 @@ Suggested milestones for incremental development:
  -Fix main() to use the extract_names list
 """
 
+
 def extract_names(filename):
-  """
-  Given a file name for baby.html, returns a list starting with the year string
-  followed by the name-rank strings in alphabetical order.
-  ['2006', 'Aaliyah 91', Aaron 57', 'Abagail 895', ' ...]
-  """
-  # +++your code here+++
-  return
+    """
+    Given a file name for baby.html, returns a list starting with the year string
+    followed by the name-rank strings in alphabetical order.
+    ['2006', 'Aaliyah 91', Aaron 57', 'Abagail 895', ' ...]
+    """
+    # +++your code here+++
+    fh = open(filename, 'r')
+    text = fh.read()
+    year = re.search('Popularity in (\d{4})', text).group(1)
+    namepattern = r'<tr align="right"><td>(\d+)</td><td>([\w]+)</td><td>(\w+)</td>'
+    matches = re.findall(namepattern, text)
+
+    # tups = []
+    # for (no,male,female) in matches:
+    #   tups.append((male, no))
+    #   tups.append((female, no))
+    # tups.sort(key=operator.itemgetter(0))
+    # tups.insert(0,(str(year)))
+    tups = [str(year)]
+    for (no, male, female) in matches:
+        tups.append(male + " " + no)
+        tups.append(female + " " + no)
+    tups.sort()
+    return tups
+
+
+def write_summary_file(tups):
+    # year=tups[0][0]
+    # fh=open("Popular_Names_in_"+str(year)+".csv",'w')
+    # fh.write(year+"\n")
+    # for tup in tups[1:]:
+    #   fh.write("{0},{1}\n".format(*tup))
+    # fh.close()
+    year = tups[0]
+    fh = open("Popular_Names_in_" + year + ".txt", 'w')
+    fh.write(year + "\n")
+    for tup in tups[1:]:
+        fh.write(tup + "\n")
+    fh.close()
+
+
+def print_to_console(tups):
+    # year=tups[0][0]
+    # print(year)
+    # for tup in tups[1:]:
+    #   print("{0} {1}\n".format(*tup))
+    year = tups[0]
+    print(year)
+    for tup in tups[1:]:
+        print(tup)
 
 
 def main():
-  # This command-line parsing code is provided.
-  # Make a list of command line arguments, omitting the [0] element
-  # which is the script itself.
-  args = sys.argv[1:]
+    # This command-line parsing code is provided.
+    # Make a list of command line arguments, omitting the [0] element
+    # which is the script itself.
+    args = sys.argv[1:]
 
-  if not args:
-    print 'usage: [--summaryfile] file [file ...]'
-    sys.exit(1)
+    if not args:
+        print('usage: [--summaryfile] file [file ...]')
+        sys.exit(1)
 
-  # Notice the summary flag and remove it from args if it is present.
-  summary = False
-  if args[0] == '--summaryfile':
-    summary = True
-    del args[0]
+    # Notice the summary flag and remove it from args if it is present.
+    summary = False
+    if args[0] == '--summaryfile':
+        summary = True
+        del args[0]
 
-  # +++your code here+++
-  # For each filename, get the names, then either print the text output
-  # or write it to a summary file
-  
+    namesList = extract_names(args[0])
+
+    if summary:
+        write_summary_file(namesList)
+    else:
+        print_to_console(namesList)
+
+    # +++your code here+++
+    # For each filename, get the names, then either print the text output
+    # or write it to a summary file
+
+
 if __name__ == '__main__':
-  main()
+    main()
