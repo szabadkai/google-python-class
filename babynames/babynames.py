@@ -41,7 +41,19 @@ def extract_names(filename):
   ['2006', 'Aaliyah 91', Aaron 57', 'Abagail 895', ' ...]
   """
   # +++your code here+++
-  return
+  html = open(filename, 'r').read()
+  year = (re.search(r'Popularity in (....)', html)).group(1)
+  namedata = re.findall(r'<td>(\d+)</td><td>(\w+)</td><td>(\w+)</td>', html)
+  nameandrank=[]
+  for entry in namedata:
+    nameandrank.append((entry[0], entry[1]))
+    nameandrank.append((entry[0], entry[2]))
+  nameandrank.sort(key=lambda t:t[1])
+  result=[]
+  result.append(year)
+  for entry in nameandrank:
+    result.append(entry[1] + " " + entry[0])
+  return result
 
 
 def main():
@@ -49,9 +61,9 @@ def main():
   # Make a list of command line arguments, omitting the [0] element
   # which is the script itself.
   args = sys.argv[1:]
-
+  
   if not args:
-    print 'usage: [--summaryfile] file [file ...]'
+    print ('usage: [--summaryfile] file [file ...]')
     sys.exit(1)
 
   # Notice the summary flag and remove it from args if it is present.
@@ -63,6 +75,18 @@ def main():
   # +++your code here+++
   # For each filename, get the names, then either print the text output
   # or write it to a summary file
+  if summary:
+    for arg in args:
+      file = open(arg[:-5]+"_summary.txt",'w')
+      namedata = extract_names(arg)
+      for entry in  namedata:
+        file.write(entry + "\n")
+  else:
+    for arg in args:
+      namedata = extract_names(arg)
+      for entry in  namedata:
+        print(entry)
+  
   
 if __name__ == '__main__':
   main()
