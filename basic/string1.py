@@ -78,7 +78,7 @@ def mix_up(a, b):
     while i < len(b):
         newB += b[i]
         i += 1
-    #return b[:2] + a[2:] + ' ' + a[:2] + b[2:] //vagy nem favago modszerrel.
+    #return b[:2] + a[2:] + ' ' + a[:2] + b[2:] #vagy nem favago modszerrel.
     return newA + ' ' + newB
 
 
