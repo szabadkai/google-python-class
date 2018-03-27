@@ -17,7 +17,12 @@
 # Return the resulting string.
 def verbing(s):
     # +++your code here+++
-    return
+    if len(s) >= 3 and s[len(s)-3:len(s)] != 'ing':
+        s = s + 'ing'
+    elif len(s) >= 3:
+        s = s + 'ly'
+            
+    return s 
 
 
 # E. not_bad
@@ -30,7 +35,17 @@ def verbing(s):
 # This dinner is good!
 def not_bad(s):
     # +++your code here+++
-    return
+    a = s
+    for index in range(0, len(s)):
+        for x in range(0,len(s)-index):
+       # print (s[index])
+            if s[index:index+3] == 'not' and s[index + x:index+ x +3] == 'bad' and s[-1] != 'd' :
+                a = s[0:index] + 'good' + s[-1]
+            elif s[index:index+3] == 'not' and s[index + x:index+ x +3] == 'bad' :
+                 a = s[0:index] + 'good' 
+                
+    return a 
+         
 
 
 # F. front_back
@@ -41,9 +56,42 @@ def not_bad(s):
 # Given 2 strings, a and b, return a string of the form
 #  a-front + b-front + a-back + b-back
 def front_back(a, b):
-    # +++your code here+++
-    return
-
+    afront = ['']
+    bfront = ['']
+    aback = ['']
+    bback = ['']
+    final = ['']
+    
+    if len(a) % 2 == 0:
+        afront = a[0:round((len(a)/2))]
+        aback = a[round((len(a)/2)):len(a)]
+        
+    elif len(a) > 3:
+        afront = a[0:round((len(a)/2))+1]
+        aback = a[round((len(a)/2))+ 1:len(a)]
+        
+    elif len(a) < 4 and len(a) % 2 != 0:
+        afront = a[0:round(len(a)/2)]
+        aback = a[round(len(a)/2):len(a)]
+        
+        
+        
+    if len(b) % 2 == 0:
+        bfront = b[0:round((len(b)/2))]
+        bback = b[round((len(b)/2)):len(b)]
+        
+    elif len(b) > 3:
+        bfront = b[0:round((len(b)/2))+1]
+        bback = b[round((len(b)/2))+ 1:len(b)]
+   
+    elif len(b) < 4 and len(a) % 2 != 0:
+        bfront = b[0:round(len(b)/2)]
+        bback = b[round(len(b)/2):len(b)]
+        
+    final = afront + bfront + aback + bback
+    
+    return final 
+        
 
 # Simple provided test() function used in main() to print
 # what each function returns vs. what it's supposed to return.

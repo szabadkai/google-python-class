@@ -24,7 +24,7 @@ so 'The' and 'the' count as the same word.
 
 2. For the --topcount flag, implement a print_top(filename) which is similar
 to print_words() but which prints just the top 20 most common words sorted
-so the most common word is first, then the next most common, and so on.
+£so the most common word is first, then the next most common, and so on.
 
 Use str.split() (no arguments) to split on all whitespace.
 
@@ -38,6 +38,24 @@ print_words() and print_top().
 """
 
 import sys
+
+def print_words(filename):
+
+    fh = open('filename')
+    
+
+    wordcount={}
+    for words in fh:
+        words = words.split()
+        for word in words:
+            word = word.lower()
+            #print(word)
+            if word in wordcount:
+                wordcount[word] += 1
+            else:
+                wordcount[word] =1
+    return wordcount
+
 
 
 # +++your code here+++
