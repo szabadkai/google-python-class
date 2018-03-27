@@ -14,24 +14,56 @@
 # modify the passed in list.
 def remove_adjacent(nums):
     # +++your code here+++
-    set_nums = set(nums)
-    final_list= []
-    for element in set_nums:
-        final_list.append(element)
+
+    new_list = []
+    for i in range(0,len(nums)):
+        if i == 0:
+            new_list.append(nums[i])
+        else:
+            if nums[i] != new_list[-1]:
+                new_list.append(nums[i])
+    return new_list
+    
+    
+    #set_nums = set(nums)
+    #final_list= []
+    #for element in set_nums:
+     #   final_list.append(element)
         
-    return(final_list)
+    #return(final_list)
 
 
 # E. Given two lists sorted in increasing order, create and return a merged
 # list of all the elements in sorted order. You may modify the passed in lists.
 # Ideally, the solution should work in "linear" time, making a single
 # pass of both lists.
-def linear_merge(list1, list2):
-    # +++your code here+++
-    new_list = list1 + list2
-    new_list.sort()
-    return(new_list)
 
+#enyem
+#def linear_merge(list1, list2):
+    # +++your code here+++ 
+    #new_list = list1 + list2
+    #new_list.sort()
+    #return(new_list) komplexitása: n*log(n) n helyett
+     
+def linear_merge(list1, list2):
+    
+    final_list = []
+  # Look at the two lists so long as both are non-empty.
+  # Take whichever element [0] is smaller.
+    while len(list1) and len(list2):
+        if list1[-1] < list2[-1]:
+            final_list.append(list2.pop(-1))
+        else:
+            final_list.append(list1.pop(-1))
+        #print(list1)
+        #print(list2)
+    if len(list1) ==0 :
+        final_list.append(list2[0])
+    else:
+        final_list.append(list1[0])
+  # Now tack on what's left
+    return sorted(final_list)
+    
 
 # Note: the solution above is kind of cute, but unforunately list.pop(0)
 # is not constant time with the standard python list implementation, so
