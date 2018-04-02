@@ -38,6 +38,39 @@ print_words() and print_top().
 """
 
 import sys
+from collections import Counter as Counter
+def reading(filename):
+    with open(filename, 'r') as f:
+        s = f.read()
+    s=s.split()
+    for i in s:
+        i=i.lower()
+    return s
+
+def print_top(filename):
+    s=reading(filename)
+    if len(s)<20:
+        print ("too short word-list or not diverse enough!")
+        return
+    else:
+        ct=Counter()
+        for w in s:
+            ct[w] += 1
+    pszeu=ct.most_common(20)
+#    print (pszeu)
+    for i in pszeu:
+        print (i[0], i[1], sep=": \t")
+
+def print_words(filename):
+    s=reading(filename)
+    app={}
+    for i in s:
+        if i not in app:
+            app[i]=0
+        app[i] += 1
+    ls=sorted(app.keys())
+    for it in ls:
+        print (it, app[it], sep=": \t")
 
 
 # +++your code here+++

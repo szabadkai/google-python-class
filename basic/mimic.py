@@ -47,13 +47,33 @@ import sys
 
 def mimic_dict(filename):
     """Returns mimic dict mapping each word to list of words which follow it."""
-    # +++your code here+++
-    return
+    mdic={}
+    with open(filename, 'r') as f:
+        s = f.read()
+    s=s.split()
+    mdic[""]=[]
+    mdic[""].append(s[0])
+    for i in range(len(s)-1):
+        if s[i] not in mdic:
+            mdic[s[i]]=[]
+        mdic[s[i]].append(s[i+1])
+    return mdic
 
 
 def print_mimic(mimic_dict, word):
     """Given mimic dict and start word, prints 200 random words."""
-    # +++your code here+++
+    new=word
+    counter=0
+    while counter<200:
+        if new not in mimic_dict:
+            new=''
+        pszeu=random.choice(mimic_dict[new])
+        print(pszeu, end=' ')
+        new=pszeu
+        counter+=1
+        if counter in [70, 140]:
+            print("")
+    print ("") #just becaouse it is ugly w/o this
     return
 
 
