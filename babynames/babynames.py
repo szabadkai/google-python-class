@@ -40,8 +40,19 @@ def extract_names(filename):
   followed by the name-rank strings in alphabetical order.
   ['2006', 'Aaliyah 91', Aaron 57', 'Abagail 895', ' ...]
   """
-  # +++your code here+++
-  return
+  names=[]
+  f=open(filename, "r")
+  for line in f:
+      if '<h3 align="center">' in line:
+          names.append(line[-10:-6])
+#          print (names)
+      if '<tr align="right">' in line:
+          line=re.split("<|>", line)
+          pszeu=line[-3]+" " + line[4]
+          names.append(pszeu)
+          pszeu=line[-7]+" "+ line[4]
+          names.append(pszeu)
+  return sorted(names)
 
 
 def main():
@@ -51,7 +62,7 @@ def main():
   args = sys.argv[1:]
 
   if not args:
-    print 'usage: [--summaryfile] file [file ...]'
+    print ('usage: [--summaryfile] file [file ...]')
     sys.exit(1)
 
   # Notice the summary flag and remove it from args if it is present.
@@ -60,9 +71,17 @@ def main():
     summary = True
     del args[0]
 
+  for i in args:
+      names=extract_names(i)
+      if summary==True:
+          sumf=input("What should be the name of the summary file for the names of %s?" % i)
+          f=open(sumf+".txt", "a")
+          f.write(str(names))
+      else:
+          print (names)
   # +++your code here+++
   # For each filename, get the names, then either print the text output
   # or write it to a summary file
-  
+  #this two-space indent gave me cancer
 if __name__ == '__main__':
   main()
