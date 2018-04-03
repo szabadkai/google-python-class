@@ -36,7 +36,6 @@ Optional: define a helper function to avoid code duplication inside
 print_words() and print_top().
 
 """
-
 import sys
 
 
@@ -46,6 +45,37 @@ import sys
 # and builds and returns a word/count dict for it.
 # Then print_words() and print_top() can just call the utility function.
 
+from collections import Counter
+
+
+def print_words(filename):
+    f = open(filename)
+    words = f.read().split()
+    f.close()
+    c = Counter()
+    
+    for x in words:
+        c[x.lower()] += 1
+
+    for x in sorted(c.items()):
+        print(x[0] + ' ' + str(x[1]))
+
+    return
+
+def print_top(filename):
+    f = open(filename)
+    words = f.read().split()
+    f.close()
+    c = Counter()
+    
+    for x in words:
+        c[x.lower()] += 1
+
+    for x in sorted(c.most_common(20)):
+        print(x[0] + ' ' + str(x[1]))
+
+    
+    return
 ###
 
 # This basic command line argument parsing code is provided and
