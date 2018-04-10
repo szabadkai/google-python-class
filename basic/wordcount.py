@@ -46,8 +46,39 @@ import sys
 # and builds and returns a word/count dict for it.
 # Then print_words() and print_top() can just call the utility function.
 
-###
+def print_words(filename):
+    fileobj = open(filename,"r")
+    words = {}
+    for line in fileobj:
+        for word in line.split():
+            if word not in words:
+                words[word] = 1
+            else:
+                words[word] += 1
+    print(str(words) + "\n")
 
+     
+
+
+def print_top(filename):
+    fileobj = open(filename,"r")
+    words = {}
+    for line in fileobj:
+        for word in line.split():
+            if word not in words:
+                words[word] = 1
+            else:
+                words[word] += 1
+    from operator import itemgetter
+    words = sorted(words.items(), key=itemgetter(1),reverse=True)
+    i=0
+    for k in words:
+        if(i == 20):
+            break
+        print(k)
+        i += 1
+        
+    
 # This basic command line argument parsing code is provided and
 # calls the print_words() and print_top() functions which you must define.
 def main():

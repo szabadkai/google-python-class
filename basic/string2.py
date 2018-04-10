@@ -16,8 +16,15 @@
 # If the string length is less than 3, leave it unchanged.
 # Return the resulting string.
 def verbing(s):
-    # +++your code here+++
-    return
+    if len(s) > 3:
+        if s.rfind('ing') == len(s)-3:
+            s += 'ly'
+            return s
+        else:
+            s+= 'ing'
+            return s
+    else:
+        return s
 
 
 # E. not_bad
@@ -29,8 +36,15 @@ def verbing(s):
 # So 'This dinner is not that bad!' yields:
 # This dinner is good!
 def not_bad(s):
-    # +++your code here+++
-    return
+    appn = s.find('not')
+    appb = s.find('bad')
+    if appn < appb:
+        string=''
+        string += s[0:appn]
+        string += 'good'
+        string += s[appb+3:len(s)]
+        return string
+    return s
 
 
 # F. front_back
@@ -41,9 +55,31 @@ def not_bad(s):
 # Given 2 strings, a and b, return a string of the form
 #  a-front + b-front + a-back + b-back
 def front_back(a, b):
-    # +++your code here+++
-    return
-
+    afront=''
+    aback=''
+    bfront=''
+    bback=''
+    if len(a) % 2 == 0:
+        afront=a[0:int(len(a)/2)]
+        aback=a[int(len(a)/2):len(a)]
+    else:
+        szam = int(len(a)/2)
+        afront=a[0:szam+1]
+        aback=a[szam+1:len(a)]
+        
+    if len(b) % 2 == 0:
+        bfront=b[0:int(len(b)/2)]
+        bback=b[int(len(b)/2):len(b)]
+    else:
+        szam = int(len(b)/2)
+        bfront=b[0:szam+1]
+        bback=b[szam+1:len(b)]
+    final=''
+    final+=afront
+    final+=bfront
+    final+=aback
+    final+=bback
+    return final
 
 # Simple provided test() function used in main() to print
 # what each function returns vs. what it's supposed to return.
