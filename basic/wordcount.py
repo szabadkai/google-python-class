@@ -51,8 +51,11 @@ def print_words(filename):
     words = {}
     for line in fileobj:
         for word in line.split():
-            words[word] += 1
-    print(words)
+            if word not in words:
+                words[word] = 1
+            else:
+                words[word] += 1
+    print(str(words) + "\n")
 
      
 
@@ -62,7 +65,10 @@ def print_top(filename):
     words = {}
     for line in fileobj:
         for word in line.split():
-            words[word] += 1
+            if word not in words:
+                words[word] = 1
+            else:
+                words[word] += 1
     from operator import itemgetter
     words = sorted(words.items(), key=itemgetter(1),reverse=True)
     i=0
